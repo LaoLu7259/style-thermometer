@@ -4,8 +4,6 @@ on:
   schedule:
     # 每周五 15:10 北京时间 = 07:10 UTC（GitHub Actions 使用 UTC）
     - cron: "10 7 * * FRI"
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
