@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>风格比价温度计 ＆ 159915 乖离率1.1 策略</title>
+<title>风格比价温度计</title>
 <script src="echarts.min.js"></script>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -37,7 +37,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
 .stat-card.state { border-left-color: #7f8c8d; }
 .stat-card.annual { border-left-color: #e67e22; }
 .stat-card.bb { border-left-color: #2980b9; }
-.stat-card.strat { border-left-color: #16a34a; }
 .stat-card .label { font-size: 12px; color: #888; margin-bottom: 6px; }
 .stat-card .value { font-size: 24px; font-weight: 700; }
 .stat-card .sub { font-size: 12px; color: #666; margin-top: 4px; }
@@ -60,41 +59,20 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
 .verdict { margin-top: 16px; padding: 14px 18px; border-radius: 10px;
   font-size: 14px; line-height: 1.8; background: #fff3cd; border: 1px solid #ffc107; }
 .footer { text-align: center; font-size: 11px; color: #aaa; padding: 20px; }
-/* 策略专用 */
-.signal-banner { border-radius: 12px; padding: 18px 22px; margin-bottom: 16px; color: white; }
-.signal-banner.sig { background: linear-gradient(135deg,#16a34a,#15803d); }
-.signal-banner.nosig { background: linear-gradient(135deg,#475569,#334155); }
-.signal-banner h3 { font-size: 18px; margin-bottom: 6px; }
-.signal-banner .detail { font-size: 13px; opacity: 0.92; line-height: 1.7; }
-.live-box { border-radius: 12px; padding: 16px 20px; margin-bottom: 20px; background: white;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-left: 4px solid #0f3460; }
-.live-box .lh { font-size: 14px; font-weight: 700; margin-bottom: 8px; color:#0f3460; }
-.live-box .row { font-size: 13px; line-height: 1.9; }
-.live-box .tag { display:inline-block; padding:2px 10px; border-radius:12px; font-size:12px; font-weight:600; }
-.tag.go { background:#dcfce7; color:#166534; }
-.tag.no { background:#fee2e2; color:#991b1b; }
-.tag.idle { background:#e2e8f0; color:#475569; }
-.tag.err { background:#fef3c7; color:#92400e; }
-.recent-trades { width: 100%; border-collapse: collapse; font-size: 12.5px; }
-.recent-trades th, .recent-trades td { padding: 6px 8px; border-bottom: 1px solid #eee; text-align: center; }
-.recent-trades th { color:#888; font-weight:600; }
-.recent-trades td.pos { color:#c0392b; font-weight:600; }
-.recent-trades td.neg { color:#16a34a; font-weight:600; }
 </style>
 </head>
 <body>
 <div class="container">
 
 <div class="header">
-  <h1>风格比价温度计 ＆ 159915 乖离率1.1 策略</h1>
-  <div class="subtitle">比价=每周五 15:10 自动刷新 ｜ 策略信号=每日 15:00 判定 ｜ 实时触发=每日 9:24 抓集合竞价 ｜ 浏览器读取同源静态数据，无需跨域，稳定不白屏</div>
+  <h1>风格比价温度计</h1>
+  <div class="subtitle">比价=每周五 15:10 自动刷新 ｜ 浏览器读取同源静态数据，无需跨域，稳定不白屏</div>
   <div><span class="status-bar loading" id="status-bar">正在加载数据…</span></div>
 </div>
 
 <div class="tabs">
   <button class="tab-btn active" data-tab="gv">成长100 / 价值100</button>
   <button class="tab-btn" data-tab="sz">中证1000 / 沪深300</button>
-  <button class="tab-btn" data-tab="st">159915 乖离率1.1 策略</button>
 </div>
 
 <!-- ============ 面板：成长/价值 ============ -->
@@ -243,94 +221,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC"
   </div>
 </div>
 
-<!-- ============ 面板：159915 乖离率1.1 策略 ============ -->
-<div class="panel" id="panel_st">
-  <div class="sub-bar" id="st_updated">加载中…</div>
-
-  <div class="signal-banner nosig" id="st_banner">
-    <h3 id="st_banner_title">次日信号判定中…</h3>
-    <div class="detail" id="st_banner_detail">—</div>
-  </div>
-
-  <div class="live-box" id="st_live">
-    <div class="lh">今日 9:24 集合竞价实时触发状态</div>
-    <div class="row" id="st_live_row">加载中…</div>
-  </div>
-
-  <div class="stats-grid">
-    <div class="stat-card strat">
-      <div class="label">策略总收益（运行以来）</div>
-      <div class="value" id="st_total">—</div>
-      <div class="sub" id="st_total_sub">—</div>
-    </div>
-    <div class="stat-card strat">
-      <div class="label">最大回撤</div>
-      <div class="value" id="st_mdd">—</div>
-      <div class="sub">运行以来最大回撤</div>
-    </div>
-    <div class="stat-card strat">
-      <div class="label">交易次数 / 胜率</div>
-      <div class="value" id="st_trades">—</div>
-      <div class="sub" id="st_win">—</div>
-    </div>
-    <div class="stat-card strat">
-      <div class="label">平均单笔收益</div>
-      <div class="value" id="st_avg">—</div>
-      <div class="sub">最佳 / 最差</div>
-    </div>
-    <div class="stat-card strat">
-      <div class="label">同期 159915 买入持有</div>
-      <div class="value" id="st_bh_etf">—</div>
-      <div class="sub">同期基准对比</div>
-    </div>
-    <div class="stat-card strat">
-      <div class="label">同期 创业板指 买入持有</div>
-      <div class="value" id="st_bh_cyb">—</div>
-      <div class="sub">同期基准对比</div>
-    </div>
-  </div>
-
-  <div class="chart-panel">
-    <h3>159915 日K线 + 策略买卖点标注（红涨绿跌）</h3>
-    <div class="chart-desc">▲绿三角=策略买入点（位于K线下方），▼红三角=策略卖出点（位于K线上方）。可滚轮缩放 / 拖动底部滑块。</div>
-    <div class="chart-box" id="st_chart"></div>
-  </div>
-
-  <div class="analysis-panel">
-    <h3>策略说明 ＆ 近期交易记录</h3>
-    <div class="analysis-grid">
-      <div class="analysis-section">
-        <h4>策略规则（乖离率1.1 · 创业板159915）</h4>
-        <table>
-          <tr><td>年上腿（收盘价＞年线）</td><td>连跌≥1日→次日开盘买入</td></tr>
-          <tr><td>年上腿 持有 / 卖出</td><td>持有 5 日，收盘卖</td></tr>
-          <tr><td>年下腿（收盘价＜年线）</td><td>连跌≥3日→次日高开买入</td></tr>
-          <tr><td>年下腿 持有 / 卖出</td><td>持有 8 日，开盘卖</td></tr>
-          <tr><td>高开定义</td><td>开盘价 ＞ 前一日收盘</td></tr>
-          <tr><td>数据更新</td><td>15:00 判次日信号 / 9:24 抓实时</td></tr>
-        </table>
-      </div>
-      <div class="analysis-section">
-        <h4>近期交易记录（最新 10 笔）</h4>
-        <table class="recent-trades" id="st_recent">
-          <thead><tr><th>买入日</th><th>买入价</th><th>卖出日</th><th>卖出价</th><th>收益率</th></tr></thead>
-          <tbody><tr><td colspan="5">加载中…</td></tr></tbody>
-        </table>
-      </div>
-    </div>
-    <div class="verdict">
-      <strong>小巴解读：</strong><br>
-      这是把老鹿的「159915 乖离率1.1 策略」自动化后的结果。核心逻辑：用 250 日均线（年线）把市场分成"年上/年下"两条腿，
-      年上腿趁连跌后开盘低吸、年下腿趁急跌后高开反转，各自持有一段时间后离场。<br><br>
-      <strong>每日怎么看：</strong>顶部绿色横幅=次日（下一交易日）是否出现买入信号日，以及触发条件（开盘即买 / 开盘价需高于前收盘）；
-      下方"9:24 实时触发状态"是机器人每天 9:24 抓取 159915 集合竞价价后，对照条件给出的"今天要不要动手"提示。<br><br>
-      <strong>注意：</strong>本版为策略"核心触发"逻辑（已实现年上/年下双腿、连跌计数、高开判定、持有与卖出规则）；原策略的"闸门/贯通"细化项暂未纳入，故回测总收益高于文档值，属预期差异，后续可补。
-      所有数据为历史回测与信号提示，<strong>不构成任何交易建议</strong>，实盘请自行判断风险。
-    </div>
-  </div>
-</div>
-
-<div class="footer">数据源：成长/价值=国证指数官网；中证1000/沪深300=新浪财经；159915/创业板指=新浪财经 ｜ 所有图表读取同源静态 JSON，无需跨域 ｜ 定时任务：比价每周五15:10、策略信号每日15:00、实时触发每日9:24 ｜ WorkBuddy · 小巴</div>
+<div class="footer">数据源：成长/价值=国证指数官网；中证1000/沪深300=新浪财经 ｜ 所有图表读取同源静态 JSON，无需跨域 ｜ 定时任务：比价每周五 15:10 自动刷新 ｜ WorkBuddy · 小巴</div>
 </div>
 
 <script>
@@ -506,133 +397,15 @@ async function loadGroup(cfg){
   }
 }
 
-/* ============ 策略面板 ============ */
-function renderStrategy(D, live){
-  const s = D.stats || {};
-  const sig = D.signal || {};
-  // 横幅
-  const banner = document.getElementById("st_banner");
-  const title = document.getElementById("st_banner_title");
-  const detail = document.getElementById("st_banner_detail");
-  if (sig.is_signal_day){
-    banner.className = "signal-banner sig";
-    title.textContent = "✅ 次日（" + sig.next_trading_day + "）为买入信号日";
-    detail.innerHTML = sig.msg + "　｜　当前处于 <b>" + (sig.leg==="UP"?"年上腿":"年下腿") + "</b>，已连跌 <b>" + sig.consecutive_down + "</b> 天";
-  } else {
-    banner.className = "signal-banner nosig";
-    title.textContent = "⛔ 次日非买入信号日";
-    detail.innerHTML = sig.msg + "　｜　当前处于 <b>" + (sig.leg==="UP"?"年上腿":"年下腿") + "</b>，已连跌 <b>" + sig.consecutive_down + "</b> 天";
-  }
-  // 实时触发状态
-  const row = document.getElementById("st_live_row");
-  if (live){
-    let tag = "<span class='tag idle'>—</span>";
-    if (live.action === "执行买入") tag = "<span class='tag go'>执行买入</span>";
-    else if (live.action === "未触发，今日不买") tag = "<span class='tag no'>未触发</span>";
-    else if (live.action === "今日非信号日") tag = "<span class='tag idle'>非信号日</span>";
-    else if (live.action === "无法判断") tag = "<span class='tag err'>行情未获取</span>";
-    row.innerHTML = "日期 " + (live.date||"—") + "　开盘价 <b>" + (live.open!=null?live.open.toFixed(4):"—") + "</b>"
-      + "　最新价 <b>" + (live.current!=null?live.current.toFixed(4):"—") + "</b>"
-      + "　门槛 " + (live.threshold!=null?live.threshold.toFixed(4):"—") + "　" + tag
-      + "<br><span style='color:#555'>" + (live.msg||"") + "</span>";
-  } else {
-    row.innerHTML = "实时触发文件未生成（通常 9:24 后更新）。";
-  }
-  // 统计卡
-  const set = function(id, v, sub){ const e=$( "st", id); if(e){ e.textContent=v; if(sub) e.nextElementSibling.textContent=sub; } };
-  set("total", pctStr(s.total_return), "区间 " + (s.start||"—") + "~" + (s.end||"—"));
-  set("mdd", pctStr(s.max_drawdown), "");
-  set("trades", String(s.trade_count||"—"), "胜率 " + (s.win_rate!=null?(s.win_rate*100).toFixed(1)+"%":"—"));
-  set("avg", pctStr(s.avg_ret), "最佳 " + pctStr(s.best) + " / 最差 " + pctStr(s.worst));
-  set("bh_etf", pctStr(s.bh_159915), "");
-  set("bh_cyb", (s.bh_cyb!=null?pctStr(s.bh_cyb):"N/A"), "");
-  // 近10笔
-  const tb = document.querySelector("#st_recent tbody");
-  if (tb){
-    const mk = D.markers || {};
-    const buys = mk.buy || [], sells = mk.sell || [];
-    const n = Math.min(10, buys.length);
-    let html = "";
-    for (let i=buys.length-1; i>buys.length-1-n && i>=0; i--){
-      const b = buys[i], sl = sells[i];
-      if (!sl) continue;
-      const r = sl.price / b.price - 1;
-      html += "<tr><td>"+b.date+"</td><td>"+b.price.toFixed(4)+"</td><td>"+sl.date+"</td><td>"+sl.price.toFixed(4)
-            +"</td><td class='"+(r>=0?"pos":"neg")+"'>"+pctStr(r)+"</td></tr>";
-    }
-    tb.innerHTML = html || "<tr><td colspan='5'>暂无记录</td></tr>";
-  }
-  // K线 + 买卖点
-  renderCandle(D);
-}
-
-function renderCandle(D){
-  if (typeof echarts === "undefined") return;
-  const k = D.kline || {};
-  const dates = k.dates || [];
-  const candle = [];
-  for (let i=0;i<dates.length;i++){
-    candle.push([ k.open[i], k.close[i], k.low[i], k.high[i] ]);
-  }
-  const buyMP = (D.markers.buy||[]).map(function(m){
-    return { coord:[m.date, m.price*0.985], value:"B", symbol:"triangle", symbolSize:11,
-             itemStyle:{color:"#16a34a"}, label:{show:false} };
-  });
-  const sellMP = (D.markers.sell||[]).map(function(m){
-    return { coord:[m.date, m.price*1.015], value:"S", symbol:"triangle", symbolRotate:180, symbolSize:11,
-             itemStyle:{color:"#c0392b"}, label:{show:false} };
-  });
-  const c = echarts.init(document.getElementById("st_chart"));
-  c.setOption({
-    tooltip: { trigger: "axis", axisPointer: { type: "cross" } },
-    legend: { data:["159915"], top:8, textStyle:{fontSize:12} },
-    grid: { left: 70, right: 30, top: 50, bottom: 70 },
-    xAxis: { type:"category", data: dates, boundaryGap:true,
-      axisLabel:{ formatter:function(v){return v.slice(0,7);}, interval: Math.floor(dates.length/18), rotate:30, fontSize:10 } },
-    yAxis: { type:"value", scale:true, axisLabel:{fontSize:10} },
-    dataZoom: [ { type:"slider", bottom:20, height:18 }, { type:"inside" } ],
-    series: [{
-      name:"159915", type:"candlestick", data: candle,
-      itemStyle:{ color:"#ec4131", color0:"#16a34a", borderColor:"#ec4131", borderColor0:"#16a34a" },
-      markPoint: { data: buyMP.concat(sellMP), symbolSize:11 }
-    }]
-  });
-  charts.st = [c];
-}
-
-async function loadStrategy(){
-  const key = "st_cache_" + todayStr();
-  try {
-    const r = await fetch("strategy_data.json", { cache: "no-store" });
-    if (!r.ok) throw new Error("HTTP " + r.status);
-    const D = await r.json();
-    try { localStorage.setItem(key, JSON.stringify({D:D, at:new Date().toISOString()})); } catch(e){}
-    let live = null;
-    try {
-      const lr = await fetch("live_signal.json", { cache: "no-store" });
-      if (lr.ok) live = await lr.json();
-    } catch(e){}
-    renderStrategy(D, live);
-    document.getElementById("st_updated").textContent = "数据截至 " + (D.updated||"—") + " ｜ 策略信号每日 15:00 判定、9:24 抓实时 ｜ 来源：新浪财经";
-    return true;
-  } catch(e){
-    const cached = readCache(key);
-    if (cached && cached.D){ renderStrategy(cached.D, null); document.getElementById("st_updated").textContent="（离线缓存）"; return true; }
-    document.getElementById("st_updated").textContent = "策略数据加载失败：" + e.message;
-    return false;
-  }
-}
-
 async function runAll(){
   setStatus("正在从同源静态数据加载…", "loading");
-  const [a, b, c] = await Promise.allSettled([ loadGroup(CONFIG.gv), loadGroup(CONFIG.sz), loadStrategy() ]);
+  const [a, b] = await Promise.allSettled([ loadGroup(CONFIG.gv), loadGroup(CONFIG.sz) ]);
   const ra = a.status==="fulfilled" ? a.value : false;
   const rb = b.status==="fulfilled" ? b.value : false;
-  const rc = c.status==="fulfilled" ? c.value : false;
-  if (ra && rb && rc){
-    setStatus("✓ 全部数据已加载（比价每周五15:10刷新，策略每日15:00判信号、9:24抓实时）", "ok");
-  } else if (ra || rb || rc){
-    setStatus("⚠ 部分数据加载失败（其他组正常显示），请刷新或检查网络", "offline");
+  if (ra && rb){
+    setStatus("✓ 全部数据已加载（比价每周五15:10自动刷新）", "ok");
+  } else if (ra || rb){
+    setStatus("⚠ 部分数据加载失败（另一组正常显示），请刷新或检查网络", "offline");
   } else {
     setStatus("✗ 数据均加载失败，请检查网络后刷新", "err");
   }
